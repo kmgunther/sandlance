@@ -1,0 +1,244 @@
+setwd("/Volumes/KG/PEF")
+getwd()
+
+###Norcross
+#constrain the data window
+sand_lance_R<-read.csv("vonB_norcross.csv")
+newdata<-sand_lance_R[1:110,3:4]
+head(newdata)
+newdata
+
+#Estimate parameters
+start<-list(Linf=200, k=0.15, t0=-1)
+vonB<-newdata$Fish_length~Linf*(1-exp(-k*(newdata$Month_corr_age-t0)))
+summary(vonB)
+fitvonB<-nls((vonB),data=(newdata),start=start)
+summary(fitvonB)
+
+#Draw graph
+plot(newdata$Month_corr_age, newdata$Fish_length, pch=16, ylim = c(50,160), xlim= c(0,6),main = "North Alaska: North of Point Hope", xlab="Age (yr)",ylab="Total length (mm)")
+
+#Growth curve 
+curve_1<-read.csv("curve_norcross.csv")
+lines(curve_1$Month, curve_1$estimatedVB, col = "lightseagreen", lwd = 3)
+
+
+###Copy for Chukchi samples
+#constrain the data window
+sand_lance_R<-read.csv("vonB_chukchi.csv")
+newdata<-sand_lance_R[1:25,3:4]
+head(newdata)
+newdata
+
+#Draw graph
+plot(newdata$Month_corr_age, newdata$Fish_length, pch=16, ylim = c(50,160), xlim= c(0,6),main = "North Alaska: South of Point Hope", xlab="Age (yr)",ylab="Total length (mm)")
+
+#Growth curve 
+curve_2<-read.csv("curve_chukchi.csv")
+lines(curve_2$Month, curve_2$estimatedVB, col = "maroon1", lwd = 3)
+
+
+###Copy for SJC
+#constrain the data window
+sand_lance_R<-read.csv("vonB_SJC.csv")
+newdata<-sand_lance_R[1:23,3:4]
+
+#Draw graph
+plot(newdata$Month_corr_age, newdata$Fish_length, pch=16, ylim = c(70,130), xlim= c(0,6),main = "San Juan Channel (SJC)", xlab="Age (yr)",ylab="Total length (mm)")
+
+#Growth curve 
+curve_3<-read.csv("curve_SJC.csv")
+lines(curve_3$Month, curve_3$estimatedVB, col = "dark green", lwd = 3)
+
+
+###Copy for SJC+JB
+#constrain the data window
+sand_lance_R<-read.csv("vonB_JB_SJC.csv")
+newdata<-sand_lance_R[1:36,3:4]
+
+#Draw graph
+plot(newdata$Month_corr_age, newdata$Fish_length, pch=16, ylim = c(50,160), xlim= c(0,6),main = "JB & SJC", xlab="Age (yr)",ylab="Total length (mm)")
+
+#Growth curve 
+curve_4<-read.csv("curve_JB_SJC.csv")
+lines(curve_4$Month, curve_4$estimatedVB, col = "purple", lwd = 3)
+
+
+###Copy for SI
+#constrain the data window
+sand_lance_R<-read.csv("vonB_SI.csv")
+newdata<-sand_lance_R[1:11,3:4]
+
+#Draw graph
+plot(newdata$Month_corr_age, newdata$Fish_length, pch=16, ylim = c(50,160), xlim= c(0,6),main = "Succia Island (SI)", xlab="Age (yr)",ylab="Total length (mm)")
+
+#Growth curve 
+curve_5<-read.csv("curve_SI.csv")
+lines(curve_5$Month, curve_5$estimatedVB, col = "orange", lwd = 3)
+
+
+###Copy for JB
+#constrain the data window
+sand_lance_R<-read.csv("vonB_JB.csv")
+newdata<-sand_lance_R[1:14,3:4]
+
+#Draw graph
+plot(newdata$Month_corr_age, newdata$Fish_length, pch=16, ylim = c(50,160), xlim= c(0,6),main = "Jackson Beach (JB)", xlab="Age (yr)",ylab="Total length (mm)")
+
+#Growth curve 
+curve_6<-read.csv("curve_JB.csv")
+lines(curve_6$Month, curve_6$estimatedVB, col = "navy", lwd = 3)
+
+
+###Copy for NPI
+#constrain the data window
+sand_lance_R<-read.csv("vonB_NPI.csv")
+newdata<-sand_lance_R[1:11,3:4]
+
+#Draw graph
+plot(newdata$Month_corr_age, newdata$Fish_length, pch=16, ylim = c(50,160), xlim= c(0,6),main = "North Peapod Island (NPI)", xlab="Age (yr)",ylab="Total length (mm)")
+
+#Growth curve 
+curve_7<-read.csv("curve_NPI.csv")
+lines(curve_7$Month, curve_7$estimatedVB, col = "yellow3", lwd = 3)
+
+
+###Copy for SBnk
+#constrain the data window
+sand_lance_R<-read.csv("vonB_SBnk.csv")
+newdata<-sand_lance_R[1:14,3:4]
+
+#Draw graph
+plot(newdata$Month_corr_age, newdata$Fish_length, pch=16, ylim = c(50,160), xlim= c(0,6),main = "Salmon Bank (SBnk)", xlab="Age (yr)",ylab="Total length (mm)")
+
+#Growth curve 
+curve_8<-read.csv("curve_SBnk.csv")
+lines(curve_8$Month, curve_8$estimatedVB, col = "salmon", lwd = 3)
+
+
+###Copy for SBch
+#constrain the data window
+sand_lance_R<-read.csv("vonB_SBch.csv")
+newdata<-sand_lance_R[1:13,3:4]
+
+#Draw graph
+plot(newdata$Month_corr_age, newdata$Fish_length, pch=16, ylim = c(50,160), xlim= c(0,6),main = "South Beach (SBch)", xlab="Age (yr)",ylab="Total length (mm)")
+
+#Growth curve 
+curve_9<-read.csv("curve_SBch.csv")
+lines(curve_9$Month, curve_9$estimatedVB, col = "light blue", lwd = 3)
+
+
+###Copy for SBch+SBnk
+#constrain the data window
+sand_lance_R<-read.csv("vonB_SBch_SBnk.csv")
+newdata<-sand_lance_R[1:26,3:4]
+
+#Draw graph
+plot(newdata$Month_corr_age, newdata$Fish_length, pch=16, ylim = c(50,160), xlim= c(0,6),main = "SBch & SBnk", xlab="Age (yr)",ylab="Total length (mm)")
+
+#Growth curve 
+curve_10<-read.csv("curve_SBch_SBnk.csv")
+lines(curve_10$Month, curve_10$estimatedVB, col = "red", lwd = 3)
+
+###Copy for SJA
+#constrain the data window
+sand_lance_R<-read.csv("vonB_SJA.csv")
+newdata<-sand_lance_R[1:81,3:4]
+
+#Draw graph
+plot(newdata$Month_corr_age, newdata$Fish_length, pch=16, ylim = c(50,160), xlim= c(0,6),main = "San Juan Archipelago (all sites)", xlab="Age (yr)",ylab="Total length (mm)")
+
+#Growth curve 
+curve_11<-read.csv("curve_SJA.csv")
+lines(curve_11$Month, curve_11$estimatedVB, col = "green", lwd = 3)
+
+###Copy for Sal38
+#constrain the data window
+sand_lance_R<-read.csv("vonB_sal38.csv")
+newdata<-sand_lance_R[1:8,3:4]
+
+#Draw graph
+plot(newdata$Month_corr_age, newdata$Fish_length, pch=16, ylim = c(50,160), xlim= c(0,6),main = "Salmon 38", xlab="Age (yr)",ylab="Total length (mm)")
+
+#Growth curve 
+curve_12<-read.csv("curve_sal38.csv")
+lines(curve_11$Month, curve_11$estimatedVB, col = "red", lwd = 3)
+
+
+#########graph with all SJA growth curves###########
+#Draw graph
+plot( 0, type = 'n',ylim = c(50,160), xlim= c(0,6),main = "San Juan Archipelago", xlab="Age (yr)",ylab="Total length (mm)")
+legend("bottomright", inset=.02, legend = c("SI", "NPI", "SJC", "SBnk", "SBch", "JB"), col = c("orange", "yellow3", "darkgreen", "salmon", "lightblue", "navy"), lty = 1 , lwd = 3)
+
+#Growth curve SJC
+curve_3<-read.csv("curve_SJC.csv")
+lines(curve_3$Month, curve_3$estimatedVB, col = "dark green", lwd = 3)
+#Growth curve SBch
+curve_9<-read.csv("curve_SBch.csv")
+lines(curve_9$Month, curve_9$estimatedVB, col = "light blue", lwd = 3)
+#Growth curve SBnk
+curve_8<-read.csv("curve_SBnk.csv")
+lines(curve_8$Month, curve_8$estimatedVB, col = "salmon", lwd = 3)
+#Growth curve NPI
+curve_7<-read.csv("curve_NPI.csv")
+lines(curve_7$Month, curve_7$estimatedVB, col = "yellow3", lwd = 3)
+#Growth curve JB
+curve_6<-read.csv("curve_JB.csv")
+lines(curve_6$Month, curve_6$estimatedVB, col = "navy", lwd = 3)
+#Growth curve SI
+curve_5<-read.csv("curve_SI.csv")
+lines(curve_5$Month, curve_5$estimatedVB, col = "orange", lwd = 3)
+
+
+
+######SJA curves and Alaska curves########
+#Draw graph
+plot( 0, type = 'n',ylim = c(50,160), xlim= c(0,6),main = "All Sites", xlab="Age (yr)",ylab="Total length (mm)")
+#legend("bottomright", inset=.02, legend = c( "AK", "SI", "NPI", "SJC", "SBnk", "SBch", "JB"), col = c("lightseagreen", "orange", "yellow3", "darkgreen", "salmon", "lightblue", "navy"), lty = 1 , lwd = 3)
+
+#Growth curve SJC
+curve_3<-read.csv("curve_SJC.csv")
+lines(curve_3$Month, curve_3$estimatedVB, col = "dark green", lwd = 3)
+#Growth curve SBch
+curve_9<-read.csv("curve_SBch.csv")
+lines(curve_9$Month, curve_9$estimatedVB, col = "light blue", lwd = 3)
+#Growth curve SBnk
+curve_8<-read.csv("curve_SBnk.csv")
+lines(curve_8$Month, curve_8$estimatedVB, col = "salmon", lwd = 3)
+#Growth curve NPI
+curve_7<-read.csv("curve_NPI.csv")
+lines(curve_7$Month, curve_7$estimatedVB, col = "yellow3", lwd = 3)
+#Growth curve JB
+curve_6<-read.csv("curve_JB.csv")
+lines(curve_6$Month, curve_6$estimatedVB, col = "navy", lwd = 3)
+#Growth curve SI
+curve_5<-read.csv("curve_SI.csv")
+lines(curve_5$Month, curve_5$estimatedVB, col = "orange", lwd = 3)
+#Growth curve norcross
+curve_1<-read.csv("curve_norcross.csv")
+lines(curve_1$Month, curve_1$estimatedVB, col = "lightseagreen", lwd = 3)
+#Growth curve chukchi
+#curve_2<-read.csv("curve_chukchi.csv")
+#lines(curve_2$Month, curve_2$estimatedVB, col = "maroon1", lwd = 3)
+#Growth curve sal 38
+#curve_12<-read.csv("curve_sal38.csv")
+#lines(curve_11$Month, curve_11$estimatedVB, col = "red", lwd = 3)
+
+#######Regional growth curves########
+#Draw graph
+plot( 0, type = 'n',ylim = c(50,160), xlim= c(0,6),main = "Regional Curves", xlab="Age (yr)",ylab="Total length (mm)")
+legend("topleft", inset=.02, legend = c( "N of Point Hope", "S of Point Hope", "SJA"), col = c("lightseagreen","maroon1", "green"), lty = 1 , lwd = 3)
+
+#Growth curve 
+curve_11<-read.csv("curve_SJA.csv")
+lines(curve_11$Month, curve_11$estimatedVB, col = "green", lwd = 3)
+#Growth curve 
+curve_1<-read.csv("curve_norcross.csv")
+lines(curve_1$Month, curve_1$estimatedVB, col = "lightseagreen", lwd = 3)
+#Growth curve 
+curve_2<-read.csv("curve_chukchi.csv")
+lines(curve_2$Month, curve_2$estimatedVB, col = "maroon1", lwd = 3)
+
+
+

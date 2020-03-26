@@ -1,0 +1,32 @@
+
+setwd("/Users/Kayla/Desktop/Old Classes/FHL")
+getwd()
+
+###KGM 2019 SJC
+#constrain the data window
+sand_lance_R<-read.csv("SJC_2019.csv")
+newdata<-sand_lance_R[1:25,1:2]
+head(newdata)
+newdata
+
+#Estimate parameters
+start<-list(Linf=200, k=0.15, t0=-1)
+vonB<-newdata$Total_Length~Linf*(1-exp(-k*(newdata$Month_corr_age-t0)))
+summary(vonB)
+fitvonB<-nls((vonB),data=(newdata),start=start)
+summary(fitvonB)
+
+
+###KGM 2019 SI
+#constrain the data window
+sand_lance_R<-read.csv("SI_2019.csv")
+newdata<-sand_lance_R[1:25,1:2]
+head(newdata)
+newdata
+
+#Estimate parameters
+start<-list(Linf=200, k=0.15, t0=-1)
+vonB<-newdata$Total_Length~Linf*(1-exp(-k*(newdata$Month_corr_age-t0)))
+summary(vonB)
+fitvonB<-nls((vonB),data=(newdata),start=start)
+summary(fitvonB)
